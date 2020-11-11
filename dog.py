@@ -11,8 +11,3 @@ class Dog:
     def bark(self):
         print(f'Woof!')
         pass
-
-
-new_dog = Dog('Rex', 'SuperDog')
-print(new_dog.breed)
-new_dog.bark()
