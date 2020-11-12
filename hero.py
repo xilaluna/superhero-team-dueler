@@ -19,7 +19,8 @@ class Hero:
         Current Hero will take turns fighting the opponent hero passed in.
         """
         fighters = [self.name, opponent.name]
-        return(random.choice(fighters))
+        winner = random.choice(fighters)
+        return(f'{winner} Won!')
 
 
 if __name__ == "__main__":
