@@ -1,4 +1,7 @@
 import random
+from typing import List
+from ability import Ability
+from armor import Armor
 
 
 class Hero:
@@ -13,6 +16,8 @@ class Hero:
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
+        self.abilities = list()
+        self.armors = list()
 
     def fight(self, opponent):
         """
@@ -21,6 +26,9 @@ class Hero:
         fighters = [self.name, opponent.name]
         winner = random.choice(fighters)
         return(f'{winner} Won!')
+
+    def add_ability(self, ability):
+        pass
 
 
 if __name__ == "__main__":
