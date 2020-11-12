@@ -18,7 +18,7 @@ class Hero:
         """
         Current Hero will take turns fighting the opponent hero passed in.
         """
-        fighters = [self.name, opponent]
+        fighters = [self.name, opponent.name]
         return(random.choice(fighters))
 
 
@@ -29,4 +29,4 @@ if __name__ == "__main__":
     hero1 = Hero("Wonder Woman")
     hero2 = Hero("Dumbledore")
 
-    hero1.fight(hero2)
+    print(hero1.fight(hero2))
