@@ -1,3 +1,6 @@
+import random
+
+
 class Hero:
     """
     Hero creation
@@ -11,10 +14,19 @@ class Hero:
         self.starting_health = starting_health
         self.current_health = starting_health
 
+    def fight(self, opponent):
+        """
+        Current Hero will take turns fighting the opponent hero passed in.
+        """
+        fighters = [self.name, opponent]
+        return(random.choice(fighters))
+
 
 if __name__ == "__main__":
     # If you run this file from the terminal
     # this block is executed.
-    my_hero = Hero("Grace Hopper", 200)
-    print(my_hero.name)
-    print(my_hero.current_health)
+
+    hero1 = Hero("Wonder Woman")
+    hero2 = Hero("Dumbledore")
+
+    hero1.fight(hero2)
