@@ -53,9 +53,10 @@ class Hero:
         return: total_block:Int
         """
         total_armor = 0
-        for armor in self.armors:
-            total_armor += armor.defend()
-        return total_armor
+        if self.armors:
+            for armor in self.armors:
+                total_armor += armor.block()
+            return total_armor
 
 
 if __name__ == "__main__":
