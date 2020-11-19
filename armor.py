@@ -22,9 +22,3 @@ class Armor:
         return random_block_value
 
 
-if __name__ == "__main__":
-    # If you run this file from the terminal
-    # this block is executed.
-    armor = Armor("Debugging Shield", 10)
-    print(armor.name)
-    print(armor.block())
