@@ -18,14 +18,6 @@ class Hero:
         self.abilities = list()
         self.armors = list()
 
-    def fight(self, opponent):
-        """
-        Current Hero will take turns fighting the opponent hero passed in.
-        """
-        fighters = [self.name, opponent.name]
-        winner = random.choice(fighters)
-        return(f'{winner} won!')
-
     def add_ability(self, ability):
         """
         Adds abilities to the ability list
@@ -52,19 +44,66 @@ class Hero:
         Calculate the total block amount from all armor blocks.
         return: total_block:Int
         """
-        total_armor = 0
-        if self.armors:
-            for armor in self.armors:
-                total_armor += armor.block()
-            return total_armor
+        total_block = 0
+        for armor in self.armors:
+            total_block += armor.block()
+
+        if total_block >= damage_amt:
+            return damage_amt
+        else:
+            return total_block
+
+    def take_damage(self, damage):
+        """
+        receives damage and changes the heroe's health.
+        """
+        damage -= self.defend(damage)
+        self.current_health -= damage
+
+    def is_alive(self):
+        """
+        checks if a hero is a live or dead.
+        """
+        if self.current_health <= 0:
+            return False
+        else:
+            return True
+
+    def fight(self, opponent):
+        """
+        starts the fight for the heroes.
+        """
+        if not self.abilities or not opponent.abilities:
+            print('Draw')
+        else:
+            while True:
+                opponent.take_damage(self.attack())
+                if opponent.is_alive():
+                    pass
+                else:
+                    print(f'{self.name} wins!')
+                    break
+
+                self.take_damage(opponent.attack())
+                if self.is_alive():
+                    pass
+                else:
+                    print(f'{opponent.name} wins!')
+                    break
 
 
 if __name__ == "__main__":
     # If you run this file from the terminal
     # this block is executed.
-    ability = Ability("Great Debugging", 50)
-    another_ability = Ability("Smarty Pants", 90)
-    hero = Hero("Grace Hopper", 200)
-    hero.add_ability(ability)
-    hero.add_ability(another_ability)
-    print(hero.attack())
+
+    hero1 = Hero("Wonder Woman")
+    hero2 = Hero("Dumbledore")
+    ability1 = Ability("Super Speed", 300)
+    ability2 = Ability("Super Eyes", 130)
+    ability3 = Ability("Wizard Wand", 80)
+    ability4 = Ability("Wizard Beard", 20)
+    hero1.add_ability(ability1)
+    hero1.add_ability(ability2)
+    hero2.add_ability(ability3)
+    hero2.add_ability(ability4)
+    hero1.fight(hero2)
