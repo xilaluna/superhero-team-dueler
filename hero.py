@@ -18,6 +18,8 @@ class Hero:
         self.current_health = starting_health
         self.abilities = list()
         self.armors = list()
+        self.deaths = 0
+        self.kills = 0
 
     def add_ability(self, ability):
         """
@@ -83,6 +85,8 @@ class Hero:
                     pass
                 else:
                     print(f'{self.name} wins!')
+                    self.add_kill(1)
+                    opponent.add_death(1)
                     break
 
                 self.take_damage(opponent.attack())
@@ -90,10 +94,18 @@ class Hero:
                     pass
                 else:
                     print(f'{opponent.name} wins!')
+                    opponent.add_kill(1)
+                    self.add_death(1)
                     break
 
     def add_weapon(self, weapon):
         self.abilities.append(weapon)
+
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+
+    def add_death(self, num_deaths):
+        self.deaths += num_deaths
 
 
 if __name__ == "__main__":
